@@ -1,0 +1,9 @@
+#!/bin/bash
+
+localHex="pwm_controller.hex"
+
+if [ "${1}" != "" ]; then
+	localHex=${1}
+fi
+
+srec_cat ../../pico-flashloader/build/pico-flashloader.hex -I ${localHex} -I -o combi.hex -Intel

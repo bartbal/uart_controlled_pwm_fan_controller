@@ -54,14 +54,10 @@ include_directories("${CMAKE_SOURCE_DIR}/src/" "${CMAKE_SOURCE_DIR}/src/include/
 
 
 pico_generate_pio_header(${PWM_CONTROLLER} ${CMAKE_CURRENT_LIST_DIR}/src/uart.pio)
-# pico_generate_pio_header(${PWM_CONTROLLER} ${CMAKE_CURRENT_LIST_DIR}/src/opentherm.pio)
-
-#target_sources(${PWM_CONTROLLER} PRIVATE src/insmart.c ${sources})
 
 add_compile_definitions(DEBUG)
 
 target_compile_options(${PWM_CONTROLLER} PRIVATE -Os)
-#target_compile_definitions(${PWM_CONTROLLER} PRIVATE LED_DELAY_MS=800)
 target_link_libraries(${PWM_CONTROLLER} pico_stdlib hardware_watchdog hardware_flash hardware_pio hardware_uart hardware_irq hardware_adc pico_multicore hardware_pwm)
 
 pico_add_hex_output(${PWM_CONTROLLER})

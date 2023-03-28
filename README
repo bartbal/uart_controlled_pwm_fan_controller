@@ -1,0 +1,5 @@
+This is a little piece of code that can control a pwm fan connected to a raspberry pi pico.
+The speed of the fan can be adjusted using uart.
+Just send a byte with a value between 0 to 100 with no parity bit and 1 stop bit over uart (with baud rate of 115200 by default).
+By default it uses gpio pin 0 as uart TX and gpio pin 1 as uart RX.
+connect the PWM input of the fan to GPIO 28 by default

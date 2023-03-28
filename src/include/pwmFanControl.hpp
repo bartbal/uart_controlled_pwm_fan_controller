@@ -10,7 +10,7 @@
  * Copyright 2023 - 2023 B.J.G. van Netburg
  */
 
-#define FAN_PWM_PIN 2
+#define FAN_PWM_PIN 28
 #define FAN_TACH_PIN 27
 
 class PwmFanControl{

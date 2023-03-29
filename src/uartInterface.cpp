@@ -25,7 +25,7 @@ void UartInterface::setupUart(){
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
     // configure the data format
-    uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE);
+    uart_set_format(UART_ID, DATA_BITS, STOP_BITS, UART_PARITY_NONE);
     // init the std::cout and printf stuff to work with this uart
     stdio_init_all();
 }

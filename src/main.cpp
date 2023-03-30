@@ -4,18 +4,20 @@
  * File Created: Monday, 27th March 2023 10:57:25 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Tuesday, 28th March 2023 5:23:24 pm
+ * Last Modified: Thursday, 30th March 2023 8:44:11 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
  */
 
+#include <ctime>
 extern "C"{
-    #include <stdio.h>
+    #include "stdio.h"
     #include "pico/stdlib.h"
     #include "pico/multicore.h"
 }
 
+#include <stdlib.h>
 #include <iostream>
 
 #include "uartInterface.hpp"

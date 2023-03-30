@@ -4,11 +4,15 @@
  * File Created: Tuesday, 28th March 2023 4:30:12 pm
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Tuesday, 28th March 2023 4:39:02 pm
+ * Last Modified: Thursday, 30th March 2023 2:52:04 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
  */
+
+extern "C"{
+    #include "hardware/uart.h"
+}
 
 // config uart
 #define UART_ID uart0

@@ -4,15 +4,17 @@
  * File Created: Monday, 27th March 2023 1:47:08 pm
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Tuesday, 28th March 2023 5:34:31 pm
+ * Last Modified: Thursday, 30th March 2023 3:23:08 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
  */
 
 extern "C"{
+    #include "pico/time.h"
+    #include "hardware/gpio.h"
     #include "pico/stdlib.h"
-    #include <stdio.h>
+    #include "stdio.h"
     #include "hardware/irq.h"
     #include "hardware/pwm.h"
 }

@@ -4,14 +4,15 @@
  * File Created: Tuesday, 28th March 2023 4:31:19 pm
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Tuesday, 28th March 2023 4:40:58 pm
+ * Last Modified: Thursday, 30th March 2023 1:16:38 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
  */
 
 extern "C"{
-    #include <stdio.h>
+    #include "stdio.h"
+    #include "hardware/gpio.h"
     #include "pico/stdlib.h"
     #include "hardware/uart.h"
 }

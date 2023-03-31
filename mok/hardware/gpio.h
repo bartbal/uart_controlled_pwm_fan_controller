@@ -4,7 +4,7 @@
  * File Created: Thursday, 30th March 2023 11:13:12 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Thursday, 30th March 2023 6:09:07 pm
+ * Last Modified: Friday, 31st March 2023 12:41:42 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -15,11 +15,8 @@
 #define GPIO_H
 
 #include <types.h>
-// #include <stdlib.h>
 
-// #include <stdlib.h>
-// #include <cstdio>
-
+// define gpio_function enum
 enum gpio_function {
     GPIO_FUNC_XIP = 0,
     GPIO_FUNC_SPI = 1,
@@ -34,6 +31,13 @@ enum gpio_function {
     GPIO_FUNC_NULL = 0xf,
 };
 
+/**
+ * @brief 
+ * Mok function to set gpio function.
+ * This will check the given params and print any issues
+ * @param gpio 
+ * @param fn 
+ */
 void gpio_set_function(uint gpio, enum gpio_function fn);
 
 #endif // GPIO_H

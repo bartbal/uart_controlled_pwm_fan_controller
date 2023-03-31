@@ -4,7 +4,7 @@
  * File Created: Thursday, 30th March 2023 10:22:04 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Thursday, 30th March 2023 9:41:40 pm
+ * Last Modified: Friday, 31st March 2023 11:55:51 am
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -19,9 +19,13 @@ extern "C"{
     #include <termios.h>
     #include <unistd.h>
     #include <stdlib.h>
+    #include "pico/multicore.h"
+    #include "pico/time.h"
 }
 
 #include <iostream>
+
+#define UART_DEVICE "/dev/pts/11"
 
 uint uart_init(uart_inst_t *uart, uint baudrate){
     if(uart != uart0){
@@ -43,10 +47,12 @@ void uart_set_format(uart_inst_t *uart, uint data_bits, uint stop_bits, uart_par
 
 char uart_getc(uart_inst_t *uart){
     // Open the serial port for reading
-    int uart_fd = open("/dev/ptx/11", O_RDONLY | O_NOCTTY | O_NDELAY);
+    int uart_fd = open(UART_DEVICE, O_RDONLY | O_NOCTTY | O_NDELAY);
     if (uart_fd < 0) {
-        std::cerr << "Failed to open UART device\n";
+        std::cout << "Failed to open UART device\n";
         return 30;
+    } else {
+        std::cout << "connected to uart\n";
     }
 
     // Configure the serial port settings
@@ -66,15 +72,18 @@ char uart_getc(uart_inst_t *uart){
     // Read bytes from the serial port
     char buf[3]; //TODO: maybe make buf smaller
     int bytes_read = 0;
-    bytes_read = read(uart_fd, buf, sizeof(buf));
     while (true) {
+        bytes_read = read(uart_fd, buf, sizeof(buf));
         if (bytes_read > 0) {
             // Process the received data here
-            return buf[0];
-            // for (int i = 0; i < bytes_read; i++) {
-            //     // std::cout << buf[i];
-            // }
+            if(buf[0] != 0){
+                return buf[0];
+            }
         }
+        if(multicore_subs_exit()){
+            return 0;
+        }
+        sleep_us(100);
     }
 
     // Close the serial port

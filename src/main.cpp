@@ -4,7 +4,7 @@
  * File Created: Monday, 27th March 2023 10:57:25 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Friday, 31st March 2023 11:25:28 am
+ * Last Modified: Friday, 31st March 2023 12:04:04 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -16,7 +16,6 @@ extern "C"{
     #include "pico/stdlib.h"
     #include "pico/multicore.h"
     #include "hardware/uart.h"
-    #include "pico/time.h"
 }
 
 #include <stdlib.h> 
@@ -30,7 +29,7 @@ void core1Loop(){
     uint8_t value = 0;
     while(true){
         std::cout << "waiting for uart\n";
-        value = uart_getc(UART_ID);       
+        value = uart_getc(UART_ID);      
         
         PwmFanControl::setSpeed(value);    
 
@@ -39,7 +38,6 @@ void core1Loop(){
             break;
         }
         #endif
-        sleep_us(1000000);
     }
 }
 
@@ -49,7 +47,7 @@ int main() {
     UartInterface::setupUart();
 
     // let us knw that we are up
-    std::cout << "################started################??\n";
+    std::cout << "################started################\n";
 
     // initialize the pwm fan controller
     PwmFanControl::init();

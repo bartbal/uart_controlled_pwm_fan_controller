@@ -4,7 +4,7 @@
  * File Created: Monday, 27th March 2023 1:47:08 pm
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Thursday, 30th March 2023 3:23:08 pm
+ * Last Modified: Friday, 31st March 2023 1:06:46 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -76,6 +76,6 @@ void PwmFanControl::setSpeed(uint8_t newSpeed){
     }
     fanSpeedMutex = true;
     fanSpeed = uint8_t(2.55*newSpeed);
-    printf("new fan speed: %u\n", fanSpeed);
+    printf("new fan speed: %u%% == %u\n", newSpeed, fanSpeed);
     fanSpeedMutex = false; 
 };

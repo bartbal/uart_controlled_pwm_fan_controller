@@ -4,7 +4,7 @@
  * File Created: Thursday, 30th March 2023 10:21:47 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Friday, 31st March 2023 1:29:23 pm
+ * Last Modified: Friday, 31st March 2023 8:37:47 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -40,11 +40,16 @@ void pwm_clear_irq(uint slice_num){
     _pwm_cleared = true;
 }
 
+static uint16_t prevLevel = 1;
+
 void pwm_set_gpio_level(uint gpio, uint16_t level){
     if(gpio != 28){
         printf("gpio is not pin 28\n");
     }
-    printf("setting level to %u\n", level);
+    if(level != prevLevel){
+        printf("setting level to %u\n", level);
+        prevLevel = level;
+    }
 }
 
 void pwm_set_enabled(uint slice_num, bool enabled){

@@ -4,7 +4,8 @@ set(CMAKE_CXX_COMPILER g++)
 
 # PLATFORM 1 = coretexM0/rp2040
 # PLATFORM 2 = x86_64
-set(PLATFORM 2)
+set(PLATFORM 1)
+# make shure to clean the build directory when switching platform
 
 if(PLATFORM EQUAL 1)
     # Pull in SDK (must be before project)
@@ -66,8 +67,6 @@ if(PLATFORM EQUAL 1)
     file(GLOB_RECURSE sources      src/*.cpp src/include/*.hpp)
 else()
     file(GLOB_RECURSE sources      src/*.cpp src/include/*.hpp mok/*.cpp mok/include/*.h mok/pico/*.h mok/hardware/*.h)
-    # file(GLOB_RECURSE sources      src/*.cpp src/include/*.hpp mok/*.cpp mok/pico/multicore.h)
-    # file(GLOB_RECURSE sources      src/*.cpp src/include/*.hpp mok/pico/multicore.c mok/pico/multicore.h)
 endif()
 
 add_executable(${PWM_CONTROLLER} ${sources} ) 
@@ -75,17 +74,10 @@ add_executable(${PWM_CONTROLLER} ${sources} )
 if(PLATFORM EQUAL 1)
     include_directories("${CMAKE_SOURCE_DIR}/src/" "${CMAKE_SOURCE_DIR}/src/include/")
     pico_generate_pio_header(${PWM_CONTROLLER} ${CMAKE_CURRENT_LIST_DIR}/src/uart.pio)
-else()
+elseif(PLATFORM EQUAL 2)
     include_directories("${CMAKE_SOURCE_DIR}/src/" "${CMAKE_SOURCE_DIR}/src/include/" "${CMAKE_SOURCE_DIR}/mok/" "${CMAKE_SOURCE_DIR}/mok/include/")
-    # include_directories("${CMAKE_SOURCE_DIR}/src/" "${CMAKE_SOURCE_DIR}/src/include/" "${CMAKE_SOURCE_DIR}/mok/" "${CMAKE_SOURCE_DIR}/mok/include/" "${CMAKE_SOURCE_DIR}/mok/hardware/" "${CMAKE_SOURCE_DIR}/mok/pico/")
-endif()
-
-
-if(PLATFORM EQUAL 2)
     add_compile_definitions(MOK)
 endif()
-
-add_compile_definitions(DEBUG)
 
 target_compile_options(${PWM_CONTROLLER} PRIVATE -Os)
 
@@ -93,10 +85,6 @@ if(PLATFORM EQUAL 1)
     target_link_libraries(${PWM_CONTROLLER} pico_stdlib hardware_watchdog hardware_flash hardware_pio hardware_uart hardware_irq hardware_adc pico_multicore hardware_pwm)
     pico_add_hex_output(${PWM_CONTROLLER})
     pico_add_bin_output(${PWM_CONTROLLER})
-# elseif(PLATFORM EQUAL 2)
-    # SET(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
-    # set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++17")
-    # target_link_libraries(${PWM_CONTROLLER} )
 endif()
 
 if(PLATFORM EQUAL 1)

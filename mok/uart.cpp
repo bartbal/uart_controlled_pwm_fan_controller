@@ -4,7 +4,7 @@
  * File Created: Thursday, 30th March 2023 10:22:04 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Friday, 31st March 2023 11:55:51 am
+ * Last Modified: Friday, 31st March 2023 12:37:59 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -25,6 +25,7 @@ extern "C"{
 
 #include <iostream>
 
+// The aurt device to read from
 #define UART_DEVICE "/dev/pts/11"
 
 uint uart_init(uart_inst_t *uart, uint baudrate){

@@ -4,7 +4,7 @@
  * File Created: Thursday, 30th March 2023 10:21:25 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Friday, 31st March 2023 1:19:21 pm
+ * Last Modified: Friday, 31st March 2023 1:30:52 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -17,6 +17,7 @@ extern "C"{
     #include <stdlib.h>
     #include "pico/multicore.h"
     #include "pico/time.h"
+    #include "hardware/pwm.h"
 }
 
 #include <thread>
@@ -40,7 +41,11 @@ static void irq_loop(){
             break;
         }
         if(_enabled){
-            _handler();
+            if(test_pwm()){
+                _handler();
+            } else {
+                printf("PWM not configured correctly!\n");
+            }
         } else {
             printf("irq not enabled, call irq_set_enabled to enable\n");
         }

@@ -4,7 +4,7 @@
  * File Created: Thursday, 30th March 2023 11:45:38 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Friday, 31st March 2023 12:41:36 pm
+ * Last Modified: Friday, 31st March 2023 1:11:50 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -23,7 +23,7 @@ void gpio_set_function(uint gpio, enum gpio_function fn){
             printf("wrong gpio pin, should be 28 for pwm function\n");
         }
     } else if(fn == GPIO_FUNC_UART){
-        if(gpio != 0 || gpio != 1){
+        if(gpio != 0 && gpio != 1){
             printf("wrong gpio pin, should be 0 for tx and 1 for rx when function is uart\n");
         }
     } else {

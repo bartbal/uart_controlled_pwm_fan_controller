@@ -4,7 +4,7 @@
  * File Created: Thursday, 30th March 2023 10:21:34 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Friday, 31st March 2023 11:32:06 am
+ * Last Modified: Friday, 31st March 2023 11:49:02 am
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -49,6 +49,14 @@ bool multicore_main_exit(){
             sleep_us(500000);
         }
         std::cout << "ending main\n";
+        return true;
+    }
+    return false;
+}
+
+bool multicore_subs_exit(){
+    if(quit.load()){
+        std::cout << "ending sub\n";
         return true;
     }
     return false;

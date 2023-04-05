@@ -4,7 +4,7 @@
  * File Created: Monday, 27th March 2023 10:57:25 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Friday, 31st March 2023 12:04:04 pm
+ * Last Modified: Wednesday, 5th April 2023 6:38:43 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -18,8 +18,8 @@ extern "C"{
     #include "hardware/uart.h"
 }
 
-#include <stdlib.h> 
-#include <iostream> 
+#include <stdlib.h>
+#include <iostream>
 
 #include "uartInterface.hpp"
 #include "pwmFanControl.hpp"
@@ -29,9 +29,9 @@ void core1Loop(){
     uint8_t value = 0;
     while(true){
         std::cout << "waiting for uart\n";
-        value = uart_getc(UART_ID);      
-        
-        PwmFanControl::setSpeed(value);    
+        value = uart_getc(UART_ID);
+
+        PwmFanControl::setSpeed(value);
 
         #ifdef MOK
         if(multicore_thread_exit()){
@@ -47,7 +47,7 @@ int main() {
     UartInterface::setupUart();
 
     // let us knw that we are up
-    std::cout << "################started################\n";
+    std::cout << "################started################" << std::endl;
 
     // initialize the pwm fan controller
     PwmFanControl::init();

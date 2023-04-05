@@ -4,7 +4,7 @@
  * File Created: Thursday, 30th March 2023 10:22:04 am
  * Author: Bart van Netburg (bartvannetburg@hotmail.com)
  * -----
- * Last Modified: Friday, 31st March 2023 12:37:59 pm
+ * Last Modified: Wednesday, 5th April 2023 9:24:10 pm
  * Modified By: Bart van Netburg (bartvannetburg@hotmail.com>)
  * -----
  * Copyright 2023 - 2023 B.J.G. van Netburg
@@ -50,10 +50,10 @@ char uart_getc(uart_inst_t *uart){
     // Open the serial port for reading
     int uart_fd = open(UART_DEVICE, O_RDONLY | O_NOCTTY | O_NDELAY);
     if (uart_fd < 0) {
-        std::cout << "Failed to open UART device\n";
+        std::cout << "Failed to open UART device" << std::endl;
         return 30;
     } else {
-        std::cout << "connected to uart\n";
+        std::cout << "connected to uart" << std::endl;
     }
 
     // Configure the serial port settings
